@@ -1,0 +1,15 @@
+.video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.video-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.video-player {
+    margin-top: 20px;
+}

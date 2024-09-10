@@ -1,14 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import "./App.css";
 import { UploadVideo } from "./components/UploadVideo";
+import { VideoList } from "./components/VideoList";
 
 function App() {
   return (
     <div>
       <h1>Claw Video file Store</h1>
       <UploadVideo></UploadVideo>
+      <VideoList></VideoList>
     </div>
   );
 }
