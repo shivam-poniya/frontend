@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { UploadVideo } from "./components/UploadVideo";
 import { VideoList } from "./components/VideoList";
-import VideoPlayerPage from "./components/VideoPlayer";
+import VideoPlayerPage from "./components/VideoPlayerPage";
 
 function App() {
   return (

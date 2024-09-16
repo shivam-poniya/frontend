@@ -1,75 +1,35 @@
 import React from 'react';
-import videojs from 'video.js';
-import 'video.js/dist/video-js.css';
+import Plyr from 'plyr-react';
+import 'plyr-react/plyr.css'; // Import the default styles
 
-export const VideoJS = ({ options, onReady }) => {
-  const videoRef = React.useRef(null);
-  const playerRef = React.useRef(null);
-
-  React.useEffect(() => {
-    if (!playerRef.current) {
-      const videoElement = document.createElement('video-js');
-      videoElement.classList.add('vjs-big-play-centered');
-      videoRef.current.appendChild(videoElement);
-
-      const player = (playerRef.current = videojs(videoElement, options, () => {
-        videojs.log('Player is ready');
-        onReady && onReady(player);
-      }));
-    } else {
-      const player = playerRef.current;
-      player.autoplay(options.autoplay);
-      player.src(options.sources);
-    }
-
-    return () => {
-      const player = playerRef.current;
-      if (player) {
-        player.dispose();
-        playerRef.current = null;
-      }
-    };
-  }, [options, onReady]);
-
-  return (
-    <div data-vjs-player>
-      <div ref={videoRef} />
-    </div>
-  );
-};
-
-const VideoPlayerPage = ({ videoSrc }) => {
-  const playerRef = React.useRef(null);
-
-  const videoJsOptions = {
-    autoplay: false,
-    controls: true,
-    responsive: true,
-    fluid: true,
+const VideoPlayer = ({ videoUrl }) => {
+  // Plyr expects a `source` object which contains the video file URL and type.
+  const videoSource = {
+    type: 'video',
     sources: [
-      { src: videoSrc, type: 'video/webm' }, // Use the passed video source
+      {
+        src: videoUrl, // Video URL from the backend
+        type: 'video/mp4', // Adjust this based on the type of your video (e.g., webm, mp4, etc.)
+      },
     ],
   };
 
-  const handlePlayerReady = React.useCallback((player) => {
-    playerRef.current = player;
-
-    player.on('waiting', () => {
-      videojs.log('Player is waiting');
-    });
-    player.on('dispose', () => {
-      videojs.log('Player will dispose');
-    });
-  }, []); // Empty dependency array ensures this function is only created once
-
   return (
     <div>
-      <div>My Video Player</div>
-      <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
-      <div>Rest of the app here</div>
+      <Plyr source={videoSource} 
+      options={{
+        controls: [
+          'play', 'progress', 'current-time', 'mute', 'volume', 'speed', 'fullscreen'
+        ],
+        settings: ['speed'],
+        speed: { 
+          selected: 1,
+          options: [0.5, 1, 1.5, 2],
+        },
+        preload: "metadata",
+       }} />
     </div>
   );
 };
 
-// Ensure you export the VideoPlayerPage component
-export default VideoPlayerPage;
+export default VideoPlayer;
