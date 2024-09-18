@@ -33,12 +33,14 @@ export const UploadVideo = () => {
     }
 
   return (
-    <div>
+    <div className='flex relative mx-4 py-4'>
+        <div className='absolute right-0 '>
         <input type='file' accept='video/*' onChange={handleChange}></input>
-        <button onClick={handleUpload} disabled={uploading}>
-            {uploading ? 'uploading...' : 'upload'}
+        <button className='bg-blue-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full' onClick={handleUpload} disabled={uploading}>
+            {uploading ? 'Uploading...' : 'Upload'}
         </button>
         {uploading && <progress value={progress} max="100"></progress>}
+        </div>
     </div>
   )
 }

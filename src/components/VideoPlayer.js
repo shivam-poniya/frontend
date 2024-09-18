@@ -15,7 +15,7 @@ const VideoPlayer = ({ videoUrl }) => {
   };
 
   return (
-    <div>
+    <div className='flex h-2/3 w-2/3'>
       <Plyr source={videoSource} 
       options={{
         controls: [

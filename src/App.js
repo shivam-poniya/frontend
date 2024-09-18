@@ -5,15 +5,17 @@ import "./App.css";
 import { UploadVideo } from "./components/UploadVideo";
 import { VideoList } from "./components/VideoList";
 import VideoPlayerPage from "./components/VideoPlayerPage";
+import Header from "./components/Header";
 
 function App() {
   return (
     <Router>
+      <Header/>
+      <div className="main-content">
       <Routes>
         <Route
           path="/" element={
             <div>
-              <h1>CLaw Video Storage</h1>
               <UploadVideo />
               <VideoList />
             </div>
@@ -21,6 +23,7 @@ function App() {
         ></Route>
         <Route path="/video/:id" element={<VideoPlayerPage />}></Route>
       </Routes>
+      </div>
     </Router>
   );
 }
