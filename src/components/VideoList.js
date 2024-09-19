@@ -38,21 +38,40 @@ export const VideoList = () => {
   if (loading) return <p>Loading Videos...</p>;
   if (error) return <p>{error}</p>;
 
+  const deleteSelectedVideo = async (video) => {
+    try {
+      const id = video.id;
+      const response = await axios.delete(`http://localhost:8000/api/videos/${id}`);
+      setVideos(videos.filter(video => video.id != id));      
+    } catch (error) {
+      console.error('Error deleting video', error);
+    }
+  };
+
   return (
     <div className="flex flex-col">
-      <h1 className="font-sans font-bold my-2 py-2">Videos List</h1>
+      <h1 className="font-sans text-4xl font-bold my-2 py-2">Videos List</h1>
       <div className="video-list">
         {videos.length > 0 ? (
           videos.map((video) => (
             <div key={video.id} className="video-item">
               <p>{video.filename}</p>
+              <div className="flex flex-row mx-2 px-2 gap-4">
               <button className="px-4 py-2 bg-black text-white rounded-lg hover:bg-red-500 transition-colors duration-300"
                 onClick={() => {
                   handleSelectedVideo(video);
                 }}
               >
-                Play Video
+                Play
               </button>
+              <button className="px-4 py-2 bg-black text-white rounded-lg hover:bg-red-500 transition-colors duration-300"
+                onClick={() => {
+                  deleteSelectedVideo(video);
+                }}
+              >
+                Delete
+              </button>
+              </div>
             </div>
           ))
         ) : (

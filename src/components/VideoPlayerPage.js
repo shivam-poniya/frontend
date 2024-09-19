@@ -15,8 +15,8 @@ const VideoPlayerPage = () => {
   }, [video]);
 
   return (
-    <div>
-      <h1>Video Player</h1>
+    <div className='flex flex-col justify-center'>
+      <h1 className='font-sans text-black text-4xl font-bold my-4'>Video Player</h1>
       {videoUrl ? <VideoPlayer videoUrl={videoUrl} /> : <p>Loading video...</p>}
     </div>
   );
