@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Header.css"; // Import custom CSS for styling
+import Logout from "./Logout";
+import { AuthContext } from "./AuthContext";
+import Login from "./Login";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const {isAuthenticated} = useContext(AuthContext)
 
   // Add event listener to change header on scroll
   useEffect(() => {
@@ -38,26 +42,13 @@ const Header = () => {
           <a href="#" className="hover:text-black">
             Videos
           </a>
-          <a
-            href="#"
-            className="text-gray-700 hover:text-black flex items-center space-x-1"
-          >
-            <span>Log in</span>
-            <svg
-              className="w-4 h-4 ml-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              ></path>
-            </svg>
-          </a>
+          <div>
+            {isAuthenticated ? (
+              <Logout />
+            ) : (
+              <button onClick={()=>{<Login></Login>}}>Login</button>
+            )}
+          </div>
         </div>
       </div>
     </nav>
