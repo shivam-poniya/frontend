@@ -21,8 +21,8 @@ const Login = () =>{
         password
       });
 
-      const { token, user } = response.data;
-      login(user, token); // Call login from AuthContext
+      const { token } = response.data;
+      login(token); // Call login from AuthContext
       navigate("/"); // Redirect to home after successful login
     } catch (error) {
       setError('Login failed. Please check your credentials.');

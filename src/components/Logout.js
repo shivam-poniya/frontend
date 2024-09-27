@@ -7,8 +7,8 @@ const Logout = () => {
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     navigate('/login'); // Redirect to login page after logout
   };
 

@@ -1,11 +1,15 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react';
+import { AuthContext } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export const UploadVideo = () => {
 
     const [file, setFile] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [progress, setProgress] = useState(0);
+    const {token} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleChange = (e)=>{
         setFile(e.target.files[0]);
@@ -19,12 +23,16 @@ export const UploadVideo = () => {
         formData.append('file', file);
 
         try{
-            const response = await axios.post('http://localhost:8000/api/videos/upload', formData, {onUploadProgress: (event) =>{
+            const response = await axios.post('http://localhost:8000/api/videos/upload',formData,{
+                headers:{
+                  Authorization:`Bearer ${token}`,
+                }, onUploadProgress: (event) =>{
                 if(event.lengthComputable){
                     setProgress(Math.round((event.loaded / event.total) * 100));
                 }
             },} );
             console.log('Upload successful:', response);
+            navigate("/");
         }catch(error){
             console.error('Error:', error);
         }finally{

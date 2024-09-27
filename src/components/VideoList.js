@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import VideoPlayer from "./VideoPlayer";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 import "./VideoList.css";
 
 export const VideoList = () => {
@@ -9,13 +10,18 @@ export const VideoList = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const {token} = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchVideos = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:8000/api/videos/");
+        const response = await axios.get("http://localhost:8000/api/videos/",{
+          headers:{
+            Authorization:`Bearer ${token}`,
+          }
+        });
         setVideos(response.data);
       } catch (error) {
         setError("Failed to fetch videos...");
@@ -41,7 +47,11 @@ export const VideoList = () => {
   const deleteSelectedVideo = async (video) => {
     try {
       const id = video.id;
-      const response = await axios.delete(`http://localhost:8000/api/videos/${id}`);
+      const response = await axios.delete(`http://localhost:8000/api/videos/${id}`,{
+        headers:{
+          Authorization:`Bearer ${token}`,
+        }
+      });
       setVideos(videos.filter(video => video.id != id));      
     } catch (error) {
       console.error('Error deleting video', error);
