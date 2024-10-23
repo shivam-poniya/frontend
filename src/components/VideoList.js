@@ -17,7 +17,7 @@ export const VideoList = () => {
     const fetchVideos = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:8000/api/videos/",{
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/videos/`,{
           headers:{
             Authorization:`Bearer ${token}`,
           }
@@ -47,7 +47,7 @@ export const VideoList = () => {
   const deleteSelectedVideo = async (video) => {
     try {
       const id = video.id;
-      const response = await axios.delete(`http://localhost:8000/api/videos/${id}`,{
+      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/api/videos/${id}`,{
         headers:{
           Authorization:`Bearer ${token}`,
         }

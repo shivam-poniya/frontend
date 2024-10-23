@@ -15,7 +15,7 @@ const Register = () => {
     setSuccess('');
 
     try {
-      await axios.post('http://localhost:8000/api/auth/register', { email, password });
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, { email, password });
       setSuccess('Registration successful! You can now login.');
       navigate('/login');
     } catch (err) {

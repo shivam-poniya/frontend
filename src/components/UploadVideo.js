@@ -23,7 +23,7 @@ export const UploadVideo = () => {
         formData.append('file', file);
 
         try{
-            const response = await axios.post('http://localhost:8000/api/videos/upload',formData,{
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/videos/upload`,formData,{
                 headers:{
                   Authorization:`Bearer ${token}`,
                 }, onUploadProgress: (event) =>{

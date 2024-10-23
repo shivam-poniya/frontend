@@ -10,7 +10,7 @@ const VideoPlayerPage = () => {
   useEffect(() => {
     // Assuming your backend serves videos at `/api/videos/:id`
     if (video?.id) {
-      setVideoUrl(`http://localhost:8000/api/videos/${video.id}`);
+      setVideoUrl(`${process.env.REACT_APP_API_URL}/api/videos/${video.id}`);
     }
   }, [video]);
 

@@ -1,0 +1,166 @@
+/* Custom Netflix-like styles for Video.js */
+
+/* Base Player */
+.video-js {
+    font-family: Arial, sans-serif;
+    background-color: #c71a1a;
+    color: white;
+    position: relative;
+    max-height: 540px;
+    max-width: 960px;
+  }
+  
+  /* Control bar */
+  .video-js .vjs-control-bar {
+    background: rgba(20, 20, 20, 0.8); /* Dark background for control bar */
+    padding: 20px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: opacity 0.3s ease;
+  }
+  
+  .video-js .vjs-control-bar .vjs-control {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+  }
+  
+  /* Progress Bar */
+  .video-js .vjs-progress-control {
+    flex-grow: 1;
+    position: relative;
+  }
+  
+  .video-js .vjs-progress-holder {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    height: 8px;
+    margin: 0 10px;
+  }
+  
+  .video-js .vjs-play-progress {
+    background-color: #e50914;
+  }
+  
+  .video-js .vjs-load-progress {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .video-js .vjs-seek-handle {
+    background-color: #e50914;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    top: -2px;
+  }
+  
+  /* Buttons */
+  .video-js .vjs-control.vjs-button {
+    font-size: 16px;
+    color: white;
+    background: none;
+    border: none;
+    padding: 25px 20px;
+    margin: 20px 0px;
+    cursor: pointer;
+  }
+  
+  .video-js .vjs-control.vjs-button:hover {
+    color: #e50914;
+  }
+  
+  /* Play/Pause Button */
+  .video-js .vjs-play-control {
+    font-size: 1.5em;
+  }
+  
+  /* Fullscreen Button */
+  .video-js .vjs-fullscreen-control {
+    font-size: 1.5em;
+  }
+  
+  /* Volume Bar */
+  .video-js .vjs-volume-panel {
+    display: flex;
+    align-items: center;
+  }
+  
+  .video-js .vjs-volume-control {
+    display: flex;
+    align-items: center;
+  }
+  
+  .video-js .vjs-volume-level {
+    background-color: #e50914;
+  }
+  
+  .video-js .vjs-mute-control {
+    font-size: 1.5em;
+  }
+  
+  /* Big Play Button */
+  .video-js .vjs-big-play-button {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    color: rgb(255, 0, 0);
+    font-size: 3em;
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 50%;
+  }
+  
+  .video-js .vjs-big-play-button:hover {
+    background-color: rgba(255, 0, 0, 0.9);
+    color: #000;
+  }
+  
+  /* Fullscreen Styling */
+  .video-js.vjs-fullscreen {
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #000;
+  }
+  
+  /* Show control bar on hover */
+  .video-js:hover .vjs-control-bar {
+    opacity: 1;
+  }
+  
+  /* Hide control bar by default */
+  .video-js .vjs-control-bar {
+    opacity: 0;
+  }
+  
+  .video-js.vjs-has-started:hover .vjs-control-bar {
+    opacity: 1;
+  }
+  
+  /* Add some spacing between the bottom of the player and the controls */
+  .video-js .vjs-control-bar {
+    bottom: 0;
+  }
+  
+  /* Responsive for mobile devices */
+  @media (max-width: 768px) {
+    .video-js .vjs-control-bar {
+      flex-direction: column;
+      align-items: center;
+      padding: 5px 0;
+    }
+  
+    .video-js .vjs-progress-control {
+      margin-top: 10px;
+      width: 90%;
+    }
+  
+    .video-js .vjs-play-control,
+    .video-js .vjs-volume-panel,
+    .video-js .vjs-fullscreen-control {
+      margin-bottom: 5px;
+    }
+  }
+  
